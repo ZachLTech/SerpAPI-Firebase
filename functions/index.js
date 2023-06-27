@@ -5,6 +5,7 @@ const {onDocumentCreated} = require("firebase-functions/v2/firestore");
 // The Firebase Admin SDK to access Firestore.
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
+const {key} = require("./apikey");
 
 initializeApp();
 
@@ -31,7 +32,7 @@ exports.makeuppercase = onDocumentCreated("/messages/{documentId}", (event) => {
   const original = event.data.data().original;
 
   const SerpApi = require('google-search-results-nodejs');
-  const search = new SerpApi.GoogleSearch("803658ef6d31763b5094e4c18d3d4a6604f4a311f68d63446afe91d102087142");
+  const search = new SerpApi.GoogleSearch(key);
   const params = {
     q: original,
     location: "Austin, Texas, United States",
